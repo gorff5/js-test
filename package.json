@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js  --ignore *.json"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cors": "^2.8.1",
+    "express": "~4.14.0",
+    "faker": "^3.1.0",
+    "morgan": "~1.7.0",
+    "q": "^1.4.1",
+    "winston": "^2.3.0"
+  }
+}
