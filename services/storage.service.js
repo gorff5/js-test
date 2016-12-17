@@ -12,7 +12,7 @@ const JSON_PATH_START_URI = './storage/';
 const JSON_PATH_END_URI = '.json';
 
 function getJson(fileName) {
-    return new Promise(function (resolve, reject)=> {
+    return new Promise((resolve, reject)=> {
         fs.readFile(_getJsonFullUri(fileName), 'utf8', (err, data)=> {
             if (err) {
                 reject(err);
