@@ -28,7 +28,7 @@ function _createData(type, profilesNumber) {
         data.id = i + 1;
         dataArray.push(data);
     }
-    return storageService.setJson(dataArray, type)
+    return storageService.getJson(type)
         .then(data=> {
             return data;
         })

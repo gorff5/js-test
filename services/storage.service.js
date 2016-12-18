@@ -1,7 +1,9 @@
 'use strict';
 
-const express = require('express');
+const Promise = require("bluebird");
 const fs = require('fs');
+
+Promise.promisifyAll(fs);
 
 const storageService = {
     getJson: getJson,
@@ -12,28 +14,24 @@ const JSON_PATH_START_URI = './storage/';
 const JSON_PATH_END_URI = '.json';
 
 function getJson(fileName) {
-    return new Promise((resolve, reject)=> {
-        fs.readFile(_getJsonFullUri(fileName), 'utf8', (err, data)=> {
-            if (err) {
-                reject(err);
-            }
-            data = JSON.parse(data);
-            resolve(data);
-        });
-    })
+        return fs.readFileAsync(_getJsonFullUri(fileName), 'utf8')
+            .then(JSON.parse)
+            .then(response=> {
+                return response;
+            }).catch(error=> {
+                throw error;
+            });
 }
 
 function setJson(json, fileName) {
-    return new Promise((resolve, reject)=> {
-        let jsonStringify = JSON.stringify(json);
+    let jsonStringify = JSON.stringify(json);
 
-        fs.writeFile(_getJsonFullUri(fileName), jsonStringify, (err)=> {
-            if (err) {
-                reject(err);
-            }
-            resolve(json);
+    return fs.writeFileAsync(_getJsonFullUri(fileName), jsonStringify)
+        .then(response=> {
+            return json;
+        }).catch(error=> {
+            throw error;
         });
-    });
 }
 
 
