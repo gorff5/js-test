@@ -1,9 +1,10 @@
 'use strict';
 
 const express = require('express');
-const appController = require('../controllers/app.controller');
 
+const appController = require('../controllers/app.controller');
 const router = express.Router();
+
 
 /* GET app objects. */
 router.get('/', function(req, res, next) {
