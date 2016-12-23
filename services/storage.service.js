@@ -7,7 +7,8 @@ Promise.promisifyAll(fs);
 
 const storageService = {
     getJson: getJson,
-    setJson: setJson
+    setJson: setJson,
+    appendToJson: appendToJson,
 };
 
 const JSON_PATH_START_URI = './storage/';
@@ -33,6 +34,22 @@ function setJson(json, fileName) {
             throw error;
         });
 }
+
+function appendToJson(json, fileName) {
+
+    return getJson(fileName)
+        .then(jsonArray=> {
+            jsonArray.push(...json);
+            return setJson(jsonArray, fileName);
+        })
+        .then(jsonArray=> {
+            return jsonArray;
+        })
+        .catch(error=> {
+            throw error;
+        });
+}
+
 
 
 // Private function

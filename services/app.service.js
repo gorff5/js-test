@@ -1,6 +1,7 @@
 'use strict';
 
 const storageService = require('./storage.service');
+const PROFILES_JSON_NAME = require('../constants/files.constants').PROFILES_JSON_NAME;
 
 const appService = {
     getAll: getAll,
@@ -9,7 +10,7 @@ const appService = {
 };
 
 function getAll() {
-    return storageService.getJson()
+    return storageService.getJson(PROFILES_JSON_NAME)
         .then((data)=> {
             return data;
          }).catch((error)=> {
@@ -23,9 +24,9 @@ function add(item) {
         .then((list)=> {
             item.id = _getLastId(list) + 1;
             list.push(item);
-            return storageService.setJson(list).then((list)=> {
-                return list;
-            });
+            return storageService.setJson(list, PROFILES_JSON_NAME);
+        }).then((list)=> {
+            return list;
         }).catch((error)=> {
             throw error;
         });
@@ -37,9 +38,9 @@ function remove(id) {
         .then((list)=> {
             let index = _getObjectIndexById(list, id);
             list.splice(index, 1);
-            return storageService.setJson(list).then((list)=> {
+            return storageService.setJson(list, PROFILES_JSON_NAME);
+        }).then((list)=> {
                 return list;
-            });
         }).catch((error)=> {
             throw error;
         });

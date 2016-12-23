@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const winston = require('winston');
 const routes = require('./routes/index');
+const debug = require('debug')('MyApp');
 
 const fakeService = require('./services/faker.service');
 
