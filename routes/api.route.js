@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
         .then((data)=> {
             res.send(data);
         }).catch((error)=> {
-            return next(error);
+            next(error);
         });
 });
 
@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
         .then((data)=> {
             res.send(data);
         }).catch((error)=> {
-            return next(error);
+            next(error);
         });
 
 });
@@ -33,9 +33,8 @@ router.delete('/:id', function(req, res, next) {
         .then((data)=> {
             res.send(data);
         }).catch((error)=> {
-            return next(error);
+            next(error);
         });
-
 });
 
 module.exports = router;

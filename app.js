@@ -19,13 +19,13 @@ app.use(cors({origin: '*'}));
 
 routes(app);
 
-// init  users
-fakeService.initData()
-    .then(data=> {
-        winston.info(data);
-    }).catch(error=> {
-        winston.error(error);
-    });
+// // init  users
+// fakeService.initData()
+//     .then(data=> {
+//         winston.info(data);
+//     }).catch(error=> {
+//         winston.error(error);
+//     });
 
 app.listen(process.env.PORT || '3000', ()=> {
   winston.info('App listening');
